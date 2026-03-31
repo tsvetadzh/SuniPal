@@ -1,0 +1,30 @@
+name: suni_pal_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.11.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.0.0
+  just_audio: ^0.10.5
+  just_audio_web: ^0.4.16
+  url_launcher: ^6.3.1
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/banners/
+    - assets/images/puzzles/
+    - assets/images/page_titles/
+    - assets/audio/

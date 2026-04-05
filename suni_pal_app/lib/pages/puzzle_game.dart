@@ -91,7 +91,7 @@ class _PuzzleGameState extends State<PuzzleGame> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          'images/page_titles/puzzle.png',
+          'assets/images/page_titles/puzzle.png',
           height: 60,
           ),
       ),
@@ -126,7 +126,7 @@ class _PuzzleGameState extends State<PuzzleGame> {
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset(
-                          'images/puzzles/puz${_currentPuzzle}_$tile.jpg',
+                          'assets/images/puzzles/puz${_currentPuzzle}_$tile.jpg',
                           fit: BoxFit.cover,
                         ),
                       ),

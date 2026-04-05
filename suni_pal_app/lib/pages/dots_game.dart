@@ -172,7 +172,7 @@ class _DotsGameState extends State<DotsGame> with SingleTickerProviderStateMixin
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 222, 250, 254), elevation: 0,
         title: Image.asset(
-            'images/page_titles/dots_title.png',
+            'assets/images/page_titles/dots_title.png',
             height: 40,
           ),
         iconTheme: const IconThemeData(color: Colors.black87),

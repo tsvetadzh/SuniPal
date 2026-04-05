@@ -51,7 +51,7 @@ class _SortingGameState extends State<SortingGame> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 222, 250, 254), elevation: 0,
         title: Image.asset(
-          'images/page_titles/sorter.png',
+          'assets/images/page_titles/sorter.png',
           height: 60,
           ),
         iconTheme: const IconThemeData(color: Colors.black87),

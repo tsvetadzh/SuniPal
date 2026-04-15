@@ -23,7 +23,11 @@ class _SoundsGameState extends State<SoundsGame> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sounds'),
+        title: Image.asset(
+          'assets/images/page_titles/sounds_title.png',
+          fit: BoxFit.contain,
+          height: 52,
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 20),

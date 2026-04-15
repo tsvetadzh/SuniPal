@@ -23,6 +23,13 @@ class _SongsPageState extends State<SongsPage>
   bool _isLoading = true;
   String? _errorMessage;
 
+  static const Map<String, String> titleImageBySound = {
+    'xylophone': 'assets/images/page_titles/xylophone.png',
+    'guitar': 'assets/images/page_titles/guitar.png',
+    'piano': 'assets/images/page_titles/piano.png',
+    'violin': 'assets/images/page_titles/violin.png',
+  };
+
   static const Map<String, SongItem> songsBySound = {
     'xylophone': SongItem(
       title: 'Xylophone',
@@ -67,7 +74,11 @@ class _SongsPageState extends State<SongsPage>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.selectedSound),
+        title: Image.asset(
+          titleImageBySound[widget.selectedSound] ?? '',
+          height: 70,
+          fit: BoxFit.contain,
+        ),
         backgroundColor: const Color.fromARGB(255, 222, 250, 254),
       ),
       body: SingleChildScrollView(

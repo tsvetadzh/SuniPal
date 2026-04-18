@@ -35,7 +35,7 @@ class _SongsPageState extends State<SongsPage>
       title: 'Xylophone',
       assetPath: 'assets/audio/xylophone.mp3',
     ),
-    'guitar': SongItem(
+    'guitar': SongItem( 
       title: 'Guitar',
       assetPath: 'assets/audio/guitar.mp3',
     ),
@@ -56,7 +56,16 @@ class _SongsPageState extends State<SongsPage>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 30),
-    )..repeat();
+    );
+
+    _player.playerStateStream.listen((state) {
+      if (!mounted) return;
+      if (state.playing) {
+        if (!_controller.isAnimating) _controller.repeat();
+      } else {
+        _controller.stop();
+      }
+    });
 
     _loadSelectedSong();
   }

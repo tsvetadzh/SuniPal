@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:suni_pal_app/pages/dots_game.dart';
 import 'package:suni_pal_app/pages/puzzle_game.dart';
+import 'package:suni_pal_app/pages/room_game.dart';
 import 'package:suni_pal_app/pages/sorting_game.dart';
 import 'package:suni_pal_app/pages/sounds_game.dart';
 
@@ -68,9 +69,56 @@ class _HomepageState extends State<Homepage> {
                       imagePath: 'assets/images/banners/sorter.png',
                       destination: SortingGame(),
                     ),
+                    SizedBox(height: bannerSpacing),
+                    _buildRoomBanner(context),
                   ],
                 ),
               ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRoomBanner(BuildContext context) {
+    return Material(
+      borderRadius: BorderRadius.circular(60),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(60),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const RoomGame()),
+        ),
+        child: AspectRatio(
+          aspectRatio: 16 / 7,
+          child: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFFB2EBF2), Color(0xFF80DEEA)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/Suni.PNG',
+                  height: 80,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(width: 16),
+                const Text(
+                  'Where is Suni?',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

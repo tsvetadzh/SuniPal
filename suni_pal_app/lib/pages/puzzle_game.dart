@@ -8,10 +8,14 @@ class PuzzleGame extends StatefulWidget {
   State<PuzzleGame> createState() => _PuzzleGameState();
 }
 
-class _PuzzleGameState extends State<PuzzleGame> {
+class _PuzzleGameState extends State<PuzzleGame> {  
+  static const int totalPuzzles = 5;
   static const int gridSize = 3;
+
   late List<int> tiles;
   int _currentPuzzle = 1;
+  final Random _random = Random();
+
 
   @override
 
@@ -69,7 +73,11 @@ class _PuzzleGameState extends State<PuzzleGame> {
       setState(() {});
       if (isSolved()){
         setState(() {
-          _currentPuzzle = _currentPuzzle == 1 ? 2 : 1;
+          int newPuzzle;
+          do {
+            newPuzzle = _random.nextInt(totalPuzzles) + 1;
+          } while (newPuzzle == _currentPuzzle);
+          _currentPuzzle = newPuzzle;
           // delayed(Duration(seconds: 1), )
           initPuzzle();
         });

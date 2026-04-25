@@ -28,4 +28,5 @@ flutter:
     - assets/images/puzzles/
     - assets/images/page_titles/
     - assets/images/characters/
+    - assets/images/categories/items/
     - assets/audio/

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suni_pal_app/pages/categories_game.dart';
 import 'package:suni_pal_app/pages/dots_game.dart';
 import 'package:suni_pal_app/pages/puzzle_game.dart';
 import 'package:suni_pal_app/pages/sorting_game.dart';
@@ -79,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                     _buildBanner(
                       context: context,
                       imagePath: 'assets/images/banners/categories_banner.png',
-                      destination: PuzzleGame(),
+                      destination: CategoriesGame(),
                     ),
                     SizedBox(height: bannerSpacing),
                   ],

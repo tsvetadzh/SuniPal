@@ -14,17 +14,20 @@ class _PuzzleGameState extends State<PuzzleGame> {
 
   late List<int> tiles;
   int _currentPuzzle = 1;
+  bool _isSolved = false;
+
   final Random _random = Random();
 
 
   @override
-
   void initState(){
     super.initState();
     initPuzzle();
   }
 
   void initPuzzle(){
+    _isSolved = false;
+
     tiles = List.generate(gridSize * gridSize, (index) {
       if (index == gridSize * gridSize - 1) return 0;
       return index + 1;
@@ -33,9 +36,8 @@ class _PuzzleGameState extends State<PuzzleGame> {
   }
 
   void shuffle(){
-    final random = Random();
 
-    for (int i = 0; i < 50; i++){
+    for (int i = 0; i < 30; i++){
       List<int> movableTiles = [];
 
       for (int j = 0; j < tiles.length; j++){
@@ -44,10 +46,10 @@ class _PuzzleGameState extends State<PuzzleGame> {
         }
       }
 
-      int moveIndex = movableTiles[random.nextInt(movableTiles.length)];
+      int moveIndex = movableTiles[_random.nextInt(movableTiles.length)];
       moveTile(moveIndex, notify: false);
-      setState(() {});
     }
+    setState(() {});
   }
 
   bool canMove(int index){
@@ -69,17 +71,12 @@ class _PuzzleGameState extends State<PuzzleGame> {
     tiles[emptyIndex] = tiles[index];
     tiles[index] = 0;
 
-    if (notify){
+    if (notify) {
       setState(() {});
-      if (isSolved()){
+
+      if (isSolved()) {
         setState(() {
-          int newPuzzle;
-          do {
-            newPuzzle = _random.nextInt(totalPuzzles) + 1;
-          } while (newPuzzle == _currentPuzzle);
-          _currentPuzzle = newPuzzle;
-          // delayed(Duration(seconds: 1), )
-          initPuzzle();
+          _isSolved = true;
         });
       }
     }
@@ -92,6 +89,16 @@ class _PuzzleGameState extends State<PuzzleGame> {
       }
     }
     return tiles.last == 0;
+  }
+
+  void nextPuzzle(){
+    int newPuzzle;
+    do {
+      newPuzzle = _random.nextInt(totalPuzzles) + 1;
+    } while (newPuzzle == _currentPuzzle);
+
+    _currentPuzzle = newPuzzle;
+    initPuzzle();
   }
 
   @override
@@ -145,8 +152,16 @@ class _PuzzleGameState extends State<PuzzleGame> {
               const SizedBox(height: 16),
               IconButton(
                 iconSize: 40,
-                icon: const Icon(Icons.refresh),
-                onPressed: () => setState(() => initPuzzle()),
+                icon: Icon(_isSolved ? Icons.arrow_forward : Icons.refresh),
+                onPressed: () {
+                  setState(() {
+                    if (_isSolved) {
+                      nextPuzzle(); 
+                    } else {
+                      initPuzzle(); 
+                    }
+                  });
+                },
               ),
             ],
           ),

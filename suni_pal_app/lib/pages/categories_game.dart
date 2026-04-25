@@ -223,21 +223,24 @@ class CategoriesGameState extends State<CategoriesGame> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           if (answered) ...[
-                            const SizedBox(height: 8),
-                            Text(
-                              correct ? 'Correct!' : 'It belongs to ${item.category}!',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: correct ? Colors.green : Colors.redAccent,
+                            SizedBox(height: h * 0.06),
+                            if (correct)
+                              const Text(
+                                'Correct!',
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 6),
+                            SizedBox(height: h * 0.06),
                             ElevatedButton(
                               onPressed: correct ? nextItem : tryAgain,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFB9DADF),
                                 foregroundColor: Colors.black87,
+                                padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 18),
+                                textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               child: Text(correct ? 'Next' : 'Try Again'),
                             ),
@@ -245,23 +248,7 @@ class CategoriesGameState extends State<CategoriesGame> {
                           Expanded(
                             child: Center(
                               child: answered
-                                  ? Container(
-                                      width: itemSize,
-                                      height: itemSize,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                          color: correct ? Colors.green : Colors.redAccent,
-                                          width: 3,
-                                        ),
-                                        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: itemImage(item.imagePath),
-                                      ),
-                                    )
+                                  ? const SizedBox.shrink()
                                   : Draggable<String>(
                                       data: item.category,
                                       feedback: Material(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:suni_pal_app/pages/dots_game.dart';
 import 'package:suni_pal_app/pages/puzzle_game.dart';
-import 'package:suni_pal_app/pages/room_game.dart';
 import 'package:suni_pal_app/pages/sorting_game.dart';
 import 'package:suni_pal_app/pages/sounds_game.dart';
+import 'package:suni_pal_app/pages/room_game.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -73,7 +73,7 @@ class _HomepageState extends State<Homepage> {
                     _buildBanner(
                       context: context,
                       imagePath: 'assets/images/banners/where_suni_banner.png',
-                      destination: PuzzleGame(),
+                      destination: RoomGame(),
                     ),
                     SizedBox(height: bannerSpacing),
                     _buildBanner(
@@ -92,61 +92,16 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  Widget _buildRoomBanner(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(60),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(60),
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const RoomGame()),
-        ),
-        child: AspectRatio(
-          aspectRatio: 16 / 7,
-          child: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFFB2EBF2), Color(0xFF80DEEA)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/Suni.PNG',
-                  height: 80,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(width: 16),
-                const Text(
-                  'Where is Suni?',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildBanner({
     required BuildContext context,
     required String imagePath,
     required Widget destination,
   }) {
     return Material(
-      borderRadius: BorderRadius.circular(60),
+      borderRadius: BorderRadius.circular(40),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        borderRadius: BorderRadius.circular(60),
+        borderRadius: BorderRadius.circular(40),
         onTap: () {
           Navigator.push(
             context,

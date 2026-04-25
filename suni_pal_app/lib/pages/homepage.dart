@@ -48,19 +48,19 @@ class _HomepageState extends State<Homepage> {
                   children: [
                     _buildBanner(
                       context: context,
-                      imagePath: 'assets/images/banners/sounds.png',
+                      imagePath: 'assets/images/banners/sounds_banner.png',
                       destination: SoundsGame(),
                     ),
                     SizedBox(height: bannerSpacing),
                     _buildBanner(
                       context: context,
-                      imagePath: 'assets/images/banners/dots.png',
+                      imagePath: 'assets/images/banners/dots_banner.png',
                       destination: DotsGame(),
                     ),
                     SizedBox(height: bannerSpacing),
                     _buildBanner(
                       context: context,
-                      imagePath: 'assets/images/banners/puzzle.png',
+                      imagePath: 'assets/images/banners/puzzles_banner.png',
                       destination: PuzzleGame(),
                     ),
                     SizedBox(height: bannerSpacing),
@@ -70,7 +70,18 @@ class _HomepageState extends State<Homepage> {
                       destination: SortingGame(),
                     ),
                     SizedBox(height: bannerSpacing),
-                    _buildRoomBanner(context),
+                    _buildBanner(
+                      context: context,
+                      imagePath: 'assets/images/banners/where_suni_banner.png',
+                      destination: PuzzleGame(),
+                    ),
+                    SizedBox(height: bannerSpacing),
+                    _buildBanner(
+                      context: context,
+                      imagePath: 'assets/images/banners/categories_banner.png',
+                      destination: PuzzleGame(),
+                    ),
+                    SizedBox(height: bannerSpacing),
                   ],
                 ),
               ),

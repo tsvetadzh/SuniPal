@@ -123,9 +123,10 @@ class CategoriesGameState extends State<CategoriesGame> {
         backgroundColor: const Color(0xFFDEFAFE),
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black87),
-        title: const Text(
-          'Categories',
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 24),
+        title: Image.asset(
+          'assets/images/page_titles/categories.png',
+          height: 60,
+          fit: BoxFit.contain,
         ),
         actions: [
           IconButton(icon: const Icon(Icons.refresh), onPressed: restart),
@@ -138,13 +139,9 @@ class CategoriesGameState extends State<CategoriesGame> {
                 children: [
                   const Text(
                     'Well done!',
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black87),
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color.fromARGB(221, 82, 138, 54)),
                   ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'You sorted all the pictures!',
-                    style: TextStyle(fontSize: 18, color: Colors.black54),
-                  ),
+                  
                   const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: restart,
@@ -161,12 +158,6 @@ class CategoriesGameState extends State<CategoriesGame> {
           : LayoutBuilder(
               builder: (context, constraints) {
                 final h = constraints.maxHeight;
-                final w = constraints.maxWidth;
-
-                final catBoxWidth = ((w - 44) / 3).clamp(110.0, 190.0);
-                final catBoxHeight = ((h * 0.67 - 100) / 2).clamp(100.0, 185.0);
-                final catImgSize = catBoxHeight * 0.9;
-                final itemSize = (h * 0.28).clamp(100.0, 160.0);
 
                 return Column(
                   children: [
@@ -174,13 +165,16 @@ class CategoriesGameState extends State<CategoriesGame> {
                       height: h * 0.67,
                       width: double.infinity,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            'Drag the picture to the right category:',
-                            style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600, color: Colors.black87),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 16),
+                            child: Text(
+                              'Drag the picture to the right category:',
+                              style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600, color: Colors.black87),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                          SizedBox(height: h * 0.01),
                           Wrap(
                             spacing: 10,
                             runSpacing: 10,
@@ -195,9 +189,9 @@ class CategoriesGameState extends State<CategoriesGame> {
                                     width: 130.0,
                                     height: 130.0,
                                     decoration: BoxDecoration(
-                                      color: isHovering ? Colors.blue.shade100 : Colors.white,
+                                      color: isHovering ? Colors.blue.shade100 : const Color(0xFFDEFAFE),
                                       borderRadius: BorderRadius.circular(14),
-                                      border: isHovering ? Border.all(color: Colors.blue, width: 2) : null,
+                                      border: isHovering ? Border.all(color: Colors.blue, width: 2) : Border.all(color: Colors.black12, width: 1),
                                       boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6)],
                                     ),
                                     child: Column(
@@ -230,7 +224,7 @@ class CategoriesGameState extends State<CategoriesGame> {
                                 style: TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.green,
+                                  color: Color.fromARGB(255, 109, 179, 112),
                                 ),
                               ),
                             SizedBox(height: h * 0.06),
@@ -254,10 +248,10 @@ class CategoriesGameState extends State<CategoriesGame> {
                                       feedback: Material(
                                         color: Colors.transparent,
                                         child: Container(
-                                          width: itemSize,
-                                          height: itemSize,
+                                          width: 100.0,
+                                          height: 100.0,
                                           decoration: BoxDecoration(
-                                            color: Colors.white,
+                                            color: const Color(0xFFDEFAFE),
                                             borderRadius: BorderRadius.circular(20),
                                             boxShadow: [BoxShadow(color: Colors.black38, blurRadius: 16)],
                                           ),
@@ -268,20 +262,21 @@ class CategoriesGameState extends State<CategoriesGame> {
                                         ),
                                       ),
                                       childWhenDragging: Container(
-                                        width: itemSize,
-                                        height: itemSize,
+                                        width: 130.0,
+                                        height: 130.0,
                                         decoration: BoxDecoration(
-                                          color: Colors.grey.shade200,
+                                          color:Color.fromARGB(255, 222, 250, 254),
                                           borderRadius: BorderRadius.circular(20),
-                                          border: Border.all(color: Colors.grey.shade400, width: 2),
+                                          
                                         ),
                                       ),
                                       child: Container(
-                                        width: itemSize,
-                                        height: itemSize,
+                                        width: 130.0,
+                                        height: 130.0,
                                         decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: const Color(0xFFDEFAFE),
                                           borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: Colors.black12, width: 1),
                                           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
                                         ),
                                         child: ClipRRect(
@@ -302,3 +297,5 @@ class CategoriesGameState extends State<CategoriesGame> {
     );
   }
 }
+
+

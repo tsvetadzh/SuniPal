@@ -108,7 +108,17 @@ class _PuzzleGameState extends State<PuzzleGame> {
         title: Image.asset(
           'assets/images/page_titles/puzzle.png',
           height: 60,
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {
+                initPuzzle(); 
+              });
+            },
           ),
+        ],
       ),
       body: Center(
         child: Padding(
@@ -117,8 +127,10 @@ class _PuzzleGameState extends State<PuzzleGame> {
             children: [
               const SizedBox(height: 20),
 
-              Expanded(
+              Flexible(
+                flex: 2,
                 child: GridView.builder(
+                  shrinkWrap: true,
                   padding: const EdgeInsets.all(16),
                   itemCount: tiles.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -150,19 +162,19 @@ class _PuzzleGameState extends State<PuzzleGame> {
                 ),
               ),
               const SizedBox(height: 16),
-              IconButton(
-                iconSize: 40,
-                icon: Icon(_isSolved ? Icons.arrow_forward : Icons.refresh),
-                onPressed: () {
-                  setState(() {
-                    if (_isSolved) {
-                      nextPuzzle(); 
-                    } else {
-                      initPuzzle(); 
-                    }
-                  });
-                },
-              ),
+              if (_isSolved)
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: IconButton(
+                    iconSize: 40,
+                    icon: const Icon(Icons.arrow_forward),
+                    onPressed: () {
+                      setState(() {
+                        nextPuzzle();
+                      });
+                    },
+                  ),
+                ),
             ],
           ),
         ),

@@ -26,11 +26,34 @@ class _SongsPageState extends State<SongsPage>
   static const Map<String, String> titleImageBySound = {
     'xylophone': 'assets/images/page_titles/xylophone.png',
     'guitar': 'assets/images/page_titles/guitar.png',
-    'piano': 'assets/images/page_titles/piano.png',
+    'piano1': 'assets/images/page_titles/piano.png',
+    'piano2': 'assets/images/page_titles/piano.png',
+    'piano3': 'assets/images/page_titles/piano.png',
+    'piano4': 'assets/images/page_titles/piano.png',
     'violin': 'assets/images/page_titles/violin.png',
   };
 
   static const Map<String, SongItem> songsBySound = {
+    'piano1': SongItem(
+      title: 'Piano 1',
+      assetPath: 'assets/audio/Chopin.mp3',
+    ),
+    'piano2': SongItem(
+      title: 'Piano 2',
+      assetPath: 'assets/audio/Schubert.mp3',
+    ),
+    'piano3': SongItem(
+      title: 'Piano 3',
+      assetPath: 'assets/audio/Beethoven.mp3',
+    ),
+    'piano4': SongItem(
+      title: 'Piano 4',
+      assetPath: 'assets/audio/piano.mp3',
+    ),
+    'violin': SongItem(
+      title: 'Violin',
+      assetPath: 'assets/audio/cello.mp3',
+    ),
     'xylophone': SongItem(
       title: 'Xylophone',
       assetPath: 'assets/audio/xylophone.mp3',
@@ -38,14 +61,6 @@ class _SongsPageState extends State<SongsPage>
     'guitar': SongItem( 
       title: 'Guitar',
       assetPath: 'assets/audio/guitar.mp3',
-    ),
-    'piano': SongItem(
-      title: 'Piano',
-      assetPath: 'assets/audio/piano.mp3',
-    ),
-    'violin': SongItem(
-      title: 'Violin',
-      assetPath: 'assets/audio/cello.mp3',
     ),
   };
 

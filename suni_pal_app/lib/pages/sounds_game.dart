@@ -10,10 +10,13 @@ class SoundsGame extends StatefulWidget {
 
 class _SoundsGameState extends State<SoundsGame> {
   final List<({String image, String soundKey})> soundOptions = const [
+    (image: 'assets/images/banners/piano.png', soundKey: 'piano1'),
+    (image: 'assets/images/banners/piano.png', soundKey: 'piano2'),
+    (image: 'assets/images/banners/piano.png', soundKey: 'piano3'),
+    (image: 'assets/images/banners/piano.png', soundKey: 'piano4'),
+    (image: 'assets/images/banners/violin.png', soundKey: 'violin'),
     (image: 'assets/images/banners/xylophone.png', soundKey: 'xylophone'),
     (image: 'assets/images/banners/guitar.png', soundKey: 'guitar'),
-    (image: 'assets/images/banners/piano.png', soundKey: 'piano'),
-    (image: 'assets/images/banners/violin.png', soundKey: 'violin'),
   ];
 
   @override

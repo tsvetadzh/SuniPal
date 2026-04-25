@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum _Cmd { above, over, under, toTheLeft, toTheRight, nextTo }
+enum _Cmd { above, over, under, toTheLeft, toTheRight }
 
 class RoomGame extends StatefulWidget {
   const RoomGame({super.key});
@@ -12,12 +12,11 @@ class RoomGame extends StatefulWidget {
 
 class _RoomGameState extends State<RoomGame> {
   static const _text = <_Cmd, String>{
-    _Cmd.above:      'Put Suni ABOVE the table.',
-    _Cmd.over:       'Put Suni ON TOP OF the table.',
-    _Cmd.under:      'Put Suni UNDER the table.',
-    _Cmd.toTheLeft:  'Put Suni TO THE LEFT of the table.',
-    _Cmd.toTheRight: 'Put Suni TO THE RIGHT of the table.',
-    _Cmd.nextTo:     'Put Suni NEXT TO the table.',
+    _Cmd.above:      'Put Suni above the table.',
+    _Cmd.over:       'Put Suni on top of the table.',
+    _Cmd.under:      'Put Suni under the table.',
+    _Cmd.toTheLeft:  'Put Suni to the left of the table.',
+    _Cmd.toTheRight: 'Put Suni to the right of the table.',
   };
 
   static const _sequence = [
@@ -26,7 +25,6 @@ class _RoomGameState extends State<RoomGame> {
     _Cmd.under,
     _Cmd.toTheLeft,
     _Cmd.toTheRight,
-    _Cmd.nextTo,
   ];
 
   static const double _suniSize = 70;
@@ -62,15 +60,14 @@ class _RoomGameState extends State<RoomGame> {
       case _Cmd.over:
         return t.inflate(_suniSize * 0.35).contains(c);
       case _Cmd.under:
-        return c.dy > t.bottom + _snap &&
-            c.dx > t.left - _suniSize * 0.6 &&
-            c.dx < t.right + _suniSize * 0.6;
+        return c.dy > t.top + t.height * 0.3 &&
+            c.dy < t.bottom &&
+            c.dx > t.left + t.width * 0.15 &&
+            c.dx < t.right - t.width * 0.15;
       case _Cmd.toTheLeft:
         return c.dx < t.left - _snap;
       case _Cmd.toTheRight:
         return c.dx > t.right + _snap;
-      case _Cmd.nextTo:
-        return c.dx < t.left - _snap || c.dx > t.right + _snap;
     }
   }
 
@@ -124,7 +121,7 @@ class _RoomGameState extends State<RoomGame> {
   @override
   Widget build(BuildContext context) {
     final String instrText = _won
-        ? 'Amazing! You did it all!'
+        ? 'Amazing!'
         : _success
             ? 'Well done!'
             : (_text[_cmd] ?? '');
@@ -136,26 +133,21 @@ class _RoomGameState extends State<RoomGame> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 222, 250, 254),
         elevation: 0,
-        title: const Text(
-          'Where is Suni?',
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
+        title: Image.asset(
+          'assets/images/page_titles/wheresuni.png',
+          height: 90,
+          fit: BoxFit.contain,
         ),
         iconTheme: const IconThemeData(color: Colors.black87),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: _restart,
-            tooltip: 'Start Over',
           ),
         ],
       ),
       body: Column(
         children: [
-          // Instruction banner (matches style of other games)
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 400),
             child: Container(
@@ -218,7 +210,7 @@ class _RoomGameState extends State<RoomGame> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    // Suni (draggable chicken)
+                    // Suni
                     Positioned(
                       left: _suniX,
                       top: _suniY,
@@ -229,7 +221,7 @@ class _RoomGameState extends State<RoomGame> {
                           scale: _success ? 1.2 : 1.0,
                           duration: const Duration(milliseconds: 200),
                           child: Image.asset(
-                            'assets/images/Suni.PNG',
+                            'assets/images/characters/suni_table.png',
                             width: _suniSize,
                             height: _suniSize,
                             fit: BoxFit.contain,

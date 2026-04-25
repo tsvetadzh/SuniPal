@@ -168,37 +168,6 @@ class _SongsPageState extends State<SongsPage>
     }
   }
 
-  Widget _buildStatus(SongItem selectedSong) {
-    if (_isLoading) {
-      return const Column(
-        children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 12),
-          Text('Preparing audio...'),
-        ],
-      );
-    }
-
-    if (_errorMessage != null) {
-      return Text(
-        _errorMessage!,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: Colors.redAccent,
-          fontWeight: FontWeight.w600,
-        ),
-      );
-    }
-
-    return Text(
-      'Ready to play ${selectedSong.title.toLowerCase()}.',
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontWeight: FontWeight.w500,
-      ),
-    );
-  }
-
   Widget _buildProgressBar() {
     return StreamBuilder<Duration?>(
       stream: _player.durationStream,

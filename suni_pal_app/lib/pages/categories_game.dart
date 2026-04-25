@@ -53,7 +53,6 @@ class CategoriesGameState extends State<CategoriesGame> {
   bool answered = false;
   bool correct = false;
   bool finished = false;
-
   @override
   void initState() {
     super.initState();
@@ -167,6 +166,7 @@ class CategoriesGameState extends State<CategoriesGame> {
                 final catBoxWidth = ((w - 44) / 3).clamp(70.0, 120.0);
                 final catBoxHeight = ((h * 0.5 - 70) / 2).clamp(65.0, 115.0);
                 final catImgSize = catBoxHeight * 0.48;
+                final itemSize = (h * 0.28).clamp(100.0, 160.0);
 
                 return Column(
                   children: [
@@ -243,10 +243,11 @@ class CategoriesGameState extends State<CategoriesGame> {
                             ),
                           ],
                           Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(14),
+                            child: Center(
                               child: answered
                                   ? Container(
+                                      width: itemSize,
+                                      height: itemSize,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(20),
@@ -263,39 +264,34 @@ class CategoriesGameState extends State<CategoriesGame> {
                                     )
                                   : Draggable<String>(
                                       data: item.category,
-                                      feedback: Transform.translate(
-                                        offset: const Offset(-55, -55),
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          child: SizedBox(
-                                            width: 110,
-                                            height: 110,
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.circular(20),
-                                                boxShadow: [BoxShadow(color: Colors.black38, blurRadius: 16)],
-                                              ),
-                                              child: ClipRRect(
-                                                borderRadius: BorderRadius.circular(20),
-                                                child: itemImage(item.imagePath),
-                                              ),
-                                            ),
+                                      feedback: Material(
+                                        color: Colors.transparent,
+                                        child: Container(
+                                          width: itemSize,
+                                          height: itemSize,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(20),
+                                            boxShadow: [BoxShadow(color: Colors.black38, blurRadius: 16)],
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(20),
+                                            child: itemImage(item.imagePath),
                                           ),
                                         ),
                                       ),
-                                      childWhenDragging: Center(
-                                        child: Container(
-                                          width: 110,
-                                          height: 110,
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey.shade200,
-                                            borderRadius: BorderRadius.circular(20),
-                                            border: Border.all(color: Colors.grey.shade400, width: 2),
-                                          ),
+                                      childWhenDragging: Container(
+                                        width: itemSize,
+                                        height: itemSize,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.shade200,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: Colors.grey.shade400, width: 2),
                                         ),
                                       ),
                                       child: Container(
+                                        width: itemSize,
+                                        height: itemSize,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(20),

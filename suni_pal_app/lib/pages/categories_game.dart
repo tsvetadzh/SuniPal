@@ -41,11 +41,11 @@ class CategoriesGameState extends State<CategoriesGame> {
   ];
 
   final List<GameCategory> categories = [
-    GameCategory('Animals', 'assets/images/categories/icons/animals.png'),
-    GameCategory('Emotions', 'assets/images/categories/icons/emotions.png'),
-    GameCategory('Transport', 'assets/images/categories/icons/transport.png'),
-    GameCategory('Shapes', 'assets/images/categories/icons/shapes.png'),
-    GameCategory('Sport', 'assets/images/categories/icons/sport.png'),
+    GameCategory('Animals', 'assets/images/categories/animals_category.png'),
+    GameCategory('Emotions', 'assets/images/categories/emotions_category.png'),
+    GameCategory('Transport', 'assets/images/categories/transport_category.png'),
+    GameCategory('Shapes', 'assets/images/categories/shapes_category.png'),
+    GameCategory('Sport', 'assets/images/categories/sport_category.png'),
   ];
 
   late List<GameItem> items;
@@ -124,7 +124,7 @@ class CategoriesGameState extends State<CategoriesGame> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black87),
         title: const Text(
-          'Sort It!',
+          'Categories',
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 24),
         ),
         actions: [
@@ -163,24 +163,24 @@ class CategoriesGameState extends State<CategoriesGame> {
                 final h = constraints.maxHeight;
                 final w = constraints.maxWidth;
 
-                final catBoxWidth = ((w - 44) / 3).clamp(70.0, 120.0);
-                final catBoxHeight = ((h * 0.5 - 70) / 2).clamp(65.0, 115.0);
-                final catImgSize = catBoxHeight * 0.48;
+                final catBoxWidth = ((w - 44) / 3).clamp(110.0, 190.0);
+                final catBoxHeight = ((h * 0.67 - 100) / 2).clamp(100.0, 185.0);
+                final catImgSize = catBoxHeight * 0.9;
                 final itemSize = (h * 0.28).clamp(100.0, 160.0);
 
                 return Column(
                   children: [
                     SizedBox(
-                      height: h * 0.52,
+                      height: h * 0.67,
                       width: double.infinity,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           const Text(
-                            'Drag the picture to the right category!',
-                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black87),
+                            'Drag the picture to the right category:',
+                            style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600, color: Colors.black87),
                           ),
-                          SizedBox(height: h * 0.02),
+                          SizedBox(height: h * 0.01),
                           Wrap(
                             spacing: 10,
                             runSpacing: 10,
@@ -192,8 +192,8 @@ class CategoriesGameState extends State<CategoriesGame> {
                                   final isHovering = candidateData.isNotEmpty;
                                   return AnimatedContainer(
                                     duration: const Duration(milliseconds: 150),
-                                    width: catBoxWidth,
-                                    height: catBoxHeight,
+                                    width: 130.0,
+                                    height: 130.0,
                                     decoration: BoxDecoration(
                                       color: isHovering ? Colors.blue.shade100 : Colors.white,
                                       borderRadius: BorderRadius.circular(14),
@@ -203,7 +203,7 @@ class CategoriesGameState extends State<CategoriesGame> {
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        categoryImage(cat.imagePath, catImgSize),
+                                        categoryImage(cat.imagePath, 100.0),
                                         const SizedBox(height: 4),
                                         Text(cat.name, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
                                       ],
@@ -217,7 +217,7 @@ class CategoriesGameState extends State<CategoriesGame> {
                       ),
                     ),
                     SizedBox(
-                      height: h * 0.48,
+                      height: h * 0.33,
                       width: double.infinity,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
